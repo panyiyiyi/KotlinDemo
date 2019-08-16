@@ -5,11 +5,11 @@
             android:icon="@android:drawable/ic_popup_disk_full"
             android:title="@string/home"/>
     <item
-            android:id="@+id/bottom_strict"
+            android:id="@+id/bottom_article"
             android:icon="@android:drawable/ic_popup_disk_full"
             android:title="@string/article"/>
     <item
-            android:id="@+id/bottom_find"
+            android:id="@+id/bottom_project"
             android:icon="@android:drawable/ic_popup_disk_full"
             android:title="@string/project"/>
 

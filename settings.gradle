@@ -1,0 +1,1 @@
+include ':app', ':kt_common', ':kt_home', ':kt_project', ':kt_wxarticle'

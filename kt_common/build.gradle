@@ -36,7 +36,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api 'com.even:common:1.0.5'
+    api 'com.even:common:1.0.6'
+
+    api 'com.google.android.material:material:1.1.0-alpha09'
 
     //路由
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"

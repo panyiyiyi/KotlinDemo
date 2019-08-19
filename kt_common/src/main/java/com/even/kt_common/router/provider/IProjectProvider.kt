@@ -1,7 +1,7 @@
 package com.even.kt_common.router.provider
 
 import com.alibaba.android.arouter.facade.template.IProvider
-import com.even.common.base.BaseLazyFragment
+import com.even.common.base.BaseFragment
 
 /**
  * @author  Created by Even on 2019/8/15
@@ -12,5 +12,5 @@ interface IProjectProvider : IProvider {
     /**
      * 获取Fragment
      */
-    fun getProjectFragment(): BaseLazyFragment
+    fun getProjectFragment(): BaseFragment
 }

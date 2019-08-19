@@ -42,4 +42,5 @@ dependencies {
     implementation project(path: ':kt_wxarticle')
     //路由
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }

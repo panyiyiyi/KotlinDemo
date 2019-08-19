@@ -2,7 +2,7 @@ package com.even.kt_home
 
 import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.even.common.base.BaseLazyFragment
+import com.even.common.base.BaseFragment
 import com.even.kt_common.router.ARouterPath
 import com.even.kt_common.router.provider.IHomeProvider
 
@@ -13,7 +13,7 @@ import com.even.kt_common.router.provider.IHomeProvider
  */
 @Route(path = ARouterPath.HOME_SERVICE_PATH, name = "首页")
 class HomeService : IHomeProvider {
-    override fun getHomeFragment(): BaseLazyFragment = HomeFragment()
+    override fun getHomeFragment(): BaseFragment = HomeFragment()
 
     override fun init(context: Context?) {
     }

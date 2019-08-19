@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.even.common.base.BaseLazyFragment
+import com.even.common.base.BaseFragment
 
 /**
  * @author  Created by Even on 2019/8/19
@@ -13,7 +13,7 @@ import com.even.common.base.BaseLazyFragment
  */
 class MainViewPagerAdapter(
     fragmentManager: FragmentManager,
-    private val fgLists: List<BaseLazyFragment>,
+    private val fgLists: List<BaseFragment>,
     lifecycle: Lifecycle
 ) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

@@ -40,6 +40,7 @@ class MainActivity : BaseKtActivity() {
                 bottomView.selectedItemId = bottomView.menu.getItem(position).itemId
             }
         })
+        viewPager.isUserInputEnabled = false
     }
 
     private fun setBottomNavigationViewItemSelect(menuItem: MenuItem): Boolean {

@@ -5,7 +5,7 @@ package com.even.kt_common.base
  *  Email: emailtopan@163.com
  *  返回对象基类
  */
-data class BaseResponseBean<T>(
+data class ResponseBean<T>(
     val errorCode: Int,
     val errorMsg: String,
     val data: T

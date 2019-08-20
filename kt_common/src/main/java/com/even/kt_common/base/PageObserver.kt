@@ -5,11 +5,11 @@ import com.even.common.utils.ToastUtils
 import io.reactivex.disposables.Disposable
 
 /**
- * @author  Created by Even on 2019/8/19
+ * @author  Created by Even on 2019/8/20
  *  Email: emailtopan@163.com
- *  返回解析对象
+ *
  */
-abstract class ResponseObserver<T>(key: String) : BaseObserver<ResponseBean<T>>(key) {
+abstract class PageObserver<T>(key: String) : BaseObserver<PageBean<T>>(key) {
     override fun doCompleted() {
     }
 
@@ -17,9 +17,9 @@ abstract class ResponseObserver<T>(key: String) : BaseObserver<ResponseBean<T>>(
         ToastUtils.showShort(errorMsg)
     }
 
-    override fun doNext(t: ResponseBean<T>) {
+    override fun doNext(t: PageBean<T>) {
         if (t.errorCode == 0) {
-            doSuccess(t.data)
+            doSuccess(t.data.pageCount, t.data.datas)
         } else {
             doFail(t.errorMsg)
         }
@@ -28,8 +28,5 @@ abstract class ResponseObserver<T>(key: String) : BaseObserver<ResponseBean<T>>(
     override fun doSubscriber(disposable: Disposable) {
     }
 
-    /**
-     * 成功
-     */
-    abstract fun doSuccess(t: T)
+    abstract fun doSuccess(pageTotal: Int, dataLists: List<T>)
 }

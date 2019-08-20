@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">@dimen/textSize_M</item>
+    </style>
+
+</resources>

@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:text="项目"
-              android:gravity="center"
-              android:textSize="@dimen/textSize_L"
-              android:textColor="@color/color333333"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTitle"
+            android:background="@color/colorFFFFFF"
+            android:layout_width="150dp"
+            android:overScrollMode="never"
+            android:layout_height="match_parent"/>
+
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+            android:layout_width="match_parent"
+            app:direction="both"
+            android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvContent"
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+                android:layout_height="match_parent"/>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 </LinearLayout>

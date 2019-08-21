@@ -11,9 +11,9 @@ import com.even.kt_wxarticle.ui.presenters.ArticleFragmentPresenter
  *
  */
 @Implement(ArticleFragmentPresenter::class)
-open interface ArticleFragmentView : BaseView {
+interface ArticleFragmentView : BaseView {
     /**
      * 获取公众号Tab成功
      */
-    open fun getTabSuccess(tabLists: List<ArticleTabBean>)
+    fun getTabSuccess(tabLists: List<ArticleTabBean>)
 }

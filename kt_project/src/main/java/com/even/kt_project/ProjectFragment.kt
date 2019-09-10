@@ -12,7 +12,6 @@ import com.even.kt_project.beans.ProjectBean
 import com.even.kt_project.beans.ProjectListBean
 import com.even.kt_project.ui.presenters.ProjectPresenter
 import com.even.kt_project.ui.views.ProjectView
-import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_project.*
 
 /**
@@ -98,7 +97,8 @@ class ProjectFragment : BaseFragment(), ProjectView {
     private fun initRvList() {
         contentAdapter = object : BaseRecyclerAdapter<ProjectListBean>(contentLists, R.layout.item_project_list) {
             override fun covert(holder: BaseViewHolder, item: ProjectListBean?, position: Int) {
-//                holder.setImageByUrl(R.id.civPhoto, item?.envelopePic, R.mipmap.ic_back)
+                holder.setImageByUrl(R.id.civPhoto, item?.envelopePic, R.mipmap.ic_back)
+//                Glide.with(activity).load(item?.envelopePic).into(holder.getView(R.id.civPhoto))
                 holder.setText(R.id.tvTitle, item?.title)
                 holder.setText(R.id.tvDes, item?.desc)
                 holder.setText(

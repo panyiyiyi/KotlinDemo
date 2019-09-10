@@ -13,4 +13,9 @@ interface IProjectProvider : IProvider {
      * 获取Fragment
      */
     fun getProjectFragment(): BaseFragment
+
+    /**
+     * 打开菜单
+     */
+    fun openMenu()
 }

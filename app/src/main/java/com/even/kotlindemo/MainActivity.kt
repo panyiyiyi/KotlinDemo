@@ -2,6 +2,7 @@ package com.even.kotlindemo
 
 import android.view.KeyEvent
 import android.view.MenuItem
+import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.even.common.base.BaseFragment
 import com.even.common.utils.ActivityManagerUtils
@@ -41,21 +42,29 @@ class MainActivity : BaseKtActivity() {
             }
         })
         viewPager.isUserInputEnabled = false
+
+        ivMenu.setOnClickListener {
+
+            projectProvider?.openMenu()
+        }
     }
 
     private fun setBottomNavigationViewItemSelect(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.bottom_home -> {
+                ivMenu.visibility = View.INVISIBLE
                 viewPager.currentItem = 0
                 tvTitle.text = UiUtils.getString(R.string.home)
                 true
             }
             R.id.bottom_article -> {
+                ivMenu.visibility = View.INVISIBLE
                 viewPager.currentItem = 1
                 tvTitle.text = UiUtils.getString(R.string.article)
                 true
             }
             R.id.bottom_project -> {
+                ivMenu.visibility = View.VISIBLE
                 viewPager.currentItem = 2
                 tvTitle.text = UiUtils.getString(R.string.project)
                 true

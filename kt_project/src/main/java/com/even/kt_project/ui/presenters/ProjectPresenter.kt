@@ -41,6 +41,12 @@ class ProjectPresenter : BasePresenter<ProjectView>() {
                 override fun doSuccess(pageTotal: Int, dataLists: List<ProjectListBean>) {
                     getView()?.getProjectListSuccess(dataLists, pageNo, pageTotal)
                 }
+
+                override fun onComplete() {
+                    super.onComplete()
+                    getView()?.reqOnComplete()
+                }
             })
+
     }
 }

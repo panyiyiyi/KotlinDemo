@@ -8,6 +8,7 @@ import com.even.common.utils.UiUtils
 import com.even.commonrv.adapter.BaseRecyclerAdapter
 import com.even.commonrv.adapter.BaseViewHolder
 import com.even.commonrv.decoration.ItemDecorationWithMargin
+import com.even.kt_common.utils.CommonOpenActivityHelper
 import com.even.kt_project.beans.ProjectBean
 import com.even.kt_project.beans.ProjectListBean
 import com.even.kt_project.ui.presenters.ProjectPresenter
@@ -46,9 +47,10 @@ class ProjectFragment : BaseFragment(), ProjectView {
         }
         srLayout.setOnLoadMoreListener {
             if (pageNo < pageTotal) {
-                reqList(1, currentId)
+                reqList(pageNo + 1, currentId)
             } else {
-                ToastUtils.showShort(getString(R.string.load_all))
+//                ToastUtils.showShort(getString(R.string.load_all))
+                srLayout.finishLoadMoreWithNoMoreData()
             }
 
         }
@@ -97,7 +99,7 @@ class ProjectFragment : BaseFragment(), ProjectView {
     private fun initRvList() {
         contentAdapter = object : BaseRecyclerAdapter<ProjectListBean>(contentLists, R.layout.item_project_list) {
             override fun covert(holder: BaseViewHolder, item: ProjectListBean?, position: Int) {
-                holder.setImageByUrl(R.id.civPhoto, item?.envelopePic, R.mipmap.ic_back)
+//                holder.setImageByUrl(R.id.civPhoto, item?.envelopePic, R.mipmap.ic_back)
 //                Glide.with(activity).load(item?.envelopePic).into(holder.getView(R.id.civPhoto))
                 holder.setText(R.id.tvTitle, item?.title)
                 holder.setText(R.id.tvDes, item?.desc)
@@ -111,7 +113,8 @@ class ProjectFragment : BaseFragment(), ProjectView {
             }
 
         }
-        contentAdapter.setOnItemClick { holder, item, position ->
+        contentAdapter.setOnItemClick { _, item, _ ->
+            CommonOpenActivityHelper.openWebViewActivity(activity, item.title, item.link)
         }
         rvContent.layoutManager = LinearLayoutManager(activity)
         rvContent.adapter = contentAdapter
@@ -123,8 +126,17 @@ class ProjectFragment : BaseFragment(), ProjectView {
     }
 
     override fun initData() {
-        (mPresenter as ProjectPresenter).getProjectType()
+        srLayout.post {
+            srLayout.autoRefresh()
+            (mPresenter as ProjectPresenter).getProjectType()
+        }
     }
+
+    override fun reqOnComplete() {
+        srLayout.finishLoadMore()
+        srLayout.finishRefresh()
+    }
+
 
     override fun getProjectSuccess(projectLists: List<ProjectBean>) {
         typeLists.addAll(projectLists)
@@ -138,6 +150,9 @@ class ProjectFragment : BaseFragment(), ProjectView {
         this.pageNo = pageNo
         this.pageTotal = pageTotal
 
+        if (pageNo == 1) {
+            contentLists.clear()
+        }
         contentLists.addAll(proLists)
         contentAdapter.notifyDataSetChanged()
     }

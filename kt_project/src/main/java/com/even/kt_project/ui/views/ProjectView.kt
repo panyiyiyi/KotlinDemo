@@ -22,4 +22,9 @@ interface ProjectView : BaseView {
      * 获取项目列表
      */
     fun getProjectListSuccess(proLists: List<ProjectListBean>, pageNo: Int, pageTotal: Int)
+
+    /**
+     * 请求完成
+     */
+    fun reqOnComplete()
 }

@@ -104,7 +104,7 @@ class ProjectFragment : BaseFragment(), ProjectView {
                 holder.setText(R.id.tvTitle, item?.title)
                 holder.setText(R.id.tvDes, item?.desc)
                 holder.setText(
-                    R.id.tvAuthor, String.format(getString(R.string.project_author, item?.author))
+                    R.id.tvAuthor, String.format(getString(R.string.common_author, item?.author))
                 )
                 holder.setText(
                     R.id.tvTime, item?.niceDate

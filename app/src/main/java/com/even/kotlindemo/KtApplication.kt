@@ -1,12 +1,8 @@
 package com.even.kotlindemo
 
-import android.content.Context
 import com.even.common.base.BaseApplication
 import com.even.common.utils.UiUtils
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator
-import com.scwang.smartrefresh.layout.api.RefreshFooter
-import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 

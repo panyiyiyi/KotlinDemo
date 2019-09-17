@@ -10,6 +10,7 @@ import com.even.commonrv.adapter.BaseRecyclerAdapter
 import com.even.commonrv.adapter.BaseViewHolder
 import com.even.commonrv.decoration.ItemDecorationWithMargin
 import com.even.kt_common.base.PageObserver
+import com.even.kt_common.utils.CommonOpenActivityHelper
 import com.even.kt_wxarticle.R
 import com.even.kt_wxarticle.api.ApiService
 import com.even.kt_wxarticle.beans.ArticleListBean
@@ -47,8 +48,12 @@ class ListFragment(private val articleId: String) : BaseFragment() {
         adapter = object : BaseRecyclerAdapter<ArticleListBean>(dataList, R.layout.item_article_list) {
             override fun covert(holder: BaseViewHolder?, item: ArticleListBean?, position: Int) {
                 holder?.setText(R.id.tvTitle, item?.title)
-                holder?.setText(R.id.tvTime, item?.niceDate)
+                holder?.setText(R.id.tvTime, String.format(UiUtils.getString(R.string.wt_update_time), item?.niceDate))
             }
+        }
+        adapter.setOnItemClick { _, item, _ ->
+            CommonOpenActivityHelper.openWebViewActivity(activity, item.title, item.link)
+
         }
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemDecorationWithMargin().setMargin(0))

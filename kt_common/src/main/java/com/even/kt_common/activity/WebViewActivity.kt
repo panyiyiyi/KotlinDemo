@@ -47,7 +47,7 @@ class WebViewActivity : BaseKtActivity() {
             activity.hideLoading()
         }
 
-        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
+        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             activity.showLoading()
         }

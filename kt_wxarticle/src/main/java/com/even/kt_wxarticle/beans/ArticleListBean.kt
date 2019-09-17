@@ -10,5 +10,7 @@ data class ArticleListBean(
     var niceDate: String,//日期
     val collect: Boolean,//收藏
     val desc: String, //描述
-    val fresh: Boolean//是否最新
+    val fresh: Boolean,//是否最新
+    val link: String//连接
+
 )

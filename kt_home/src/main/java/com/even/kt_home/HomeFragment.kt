@@ -8,7 +8,6 @@ import com.even.common.base.BaseFragment
 import com.even.common.utils.UiUtils
 import com.even.commonrv.adapter.BaseRecyclerAdapter
 import com.even.commonrv.adapter.BaseViewHolder
-import com.even.commonrv.adapter.MultiLayoutAdapter
 import com.even.commonrv.decoration.ItemDecorationWithMargin
 import com.even.kt_common.utils.CommonOpenActivityHelper
 import com.even.kt_home.ui.beans.BannerBean

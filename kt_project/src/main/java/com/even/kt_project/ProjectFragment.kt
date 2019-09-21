@@ -3,7 +3,6 @@ package com.even.kt_project
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.even.common.base.BaseFragment
-import com.even.common.utils.ToastUtils
 import com.even.common.utils.UiUtils
 import com.even.commonrv.adapter.BaseRecyclerAdapter
 import com.even.commonrv.adapter.BaseViewHolder
@@ -99,7 +98,7 @@ class ProjectFragment : BaseFragment(), ProjectView {
     private fun initRvList() {
         contentAdapter = object : BaseRecyclerAdapter<ProjectListBean>(contentLists, R.layout.item_project_list) {
             override fun covert(holder: BaseViewHolder, item: ProjectListBean?, position: Int) {
-//                holder.setImageByUrl(R.id.civPhoto, item?.envelopePic, R.mipmap.ic_back)
+                holder.setImageByUrl(R.id.civPhoto, item?.envelopePic, R.mipmap.ic_back)
 //                Glide.with(activity).load(item?.envelopePic).into(holder.getView(R.id.civPhoto))
                 holder.setText(R.id.tvTitle, item?.title)
                 holder.setText(R.id.tvDes, item?.desc)

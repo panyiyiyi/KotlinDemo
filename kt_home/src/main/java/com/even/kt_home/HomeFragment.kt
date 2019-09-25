@@ -3,12 +3,12 @@ package com.even.kt_home
 import android.content.Context
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.even.common.base.BaseFragment
 import com.even.common.utils.UiUtils
 import com.even.commonrv.adapter.BaseRecyclerAdapter
 import com.even.commonrv.adapter.BaseViewHolder
 import com.even.commonrv.decoration.ItemDecorationWithMargin
+import com.even.commonrv.utils.GlideUtil
 import com.even.kt_common.utils.CommonOpenActivityHelper
 import com.even.kt_home.ui.beans.BannerBean
 import com.even.kt_home.ui.beans.HomeListBean
@@ -100,7 +100,7 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun getBannerSuccess(bannerLists: MutableList<BannerBean>) {
         banner.setImages(bannerLists).setImageLoader(object : ImageLoader() {
             override fun displayImage(context: Context, bean: Any, imageView: ImageView) {
-                Glide.with(context).load((bean as BannerBean).imagePath).into(imageView)
+                GlideUtil.loadNet(imageView, (bean as BannerBean).imagePath)
             }
         }).setOnBannerListener { position ->
             CommonOpenActivityHelper.openWebViewActivity(

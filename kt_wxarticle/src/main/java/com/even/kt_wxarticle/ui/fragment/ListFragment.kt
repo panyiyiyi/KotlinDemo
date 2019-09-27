@@ -32,17 +32,16 @@ class ListFragment(private val articleId: String) : BaseFragment() {
     override fun getContentView(): Int = R.layout.fragment_list
     override fun getLogicClazz(): Class<*>? = null
     override fun initView() {
-        srLayout.setOnRefreshListener { direction ->
-            if (direction == SwipyRefreshLayoutDirection.TOP) {
-                getData(1)
+        srLayout.setOnLoadMoreListener {
+            if (mPageNo < mPageTotal) {
+                getData(++mPageNo)
             } else {
-                if (mPageNo < mPageTotal) {
-                    getData(++mPageNo)
-                } else {
-                    ToastUtils.showShort(UiUtils.getString(R.string.load_all))
-                    srLayout.isRefreshing = false
-                }
+                ToastUtils.showShort(UiUtils.getString(R.string.load_all))
+                srLayout.finishLoadMoreWithNoMoreData()
             }
+        }
+        srLayout.setOnRefreshListener {
+            getData(1)
         }
 
         adapter = object : BaseRecyclerAdapter<ArticleListBean>(dataList, R.layout.item_article_list) {
@@ -75,16 +74,16 @@ class ListFragment(private val articleId: String) : BaseFragment() {
 
                 override fun doCompleted() {
                     super.doCompleted()
-                    srLayout.isRefreshing = false
+                    srLayout?.finishRefresh()
+                    srLayout?.finishLoadMore()
                 }
             })
     }
 
     override fun initData() {
         srLayout.post {
-            srLayout.isRefreshing = true
+            srLayout.autoRefresh()
             getData(mPageNo)
         }
-
     }
 }

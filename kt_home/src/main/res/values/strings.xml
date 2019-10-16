@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kt_Home</string>
+    <string name="home_input_key">请输入关键字</string>
+    <string name="home_classify">分类：%s/%1s</string>
 </resources>

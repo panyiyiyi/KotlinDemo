@@ -11,5 +11,6 @@ data class ProjectBean(
     val order: String,
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
-    val visible: Int
+    val visible: Int,
+    var isSelect: Boolean//是否选中
 )

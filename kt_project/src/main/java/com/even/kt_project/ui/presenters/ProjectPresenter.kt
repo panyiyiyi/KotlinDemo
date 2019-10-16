@@ -33,14 +33,20 @@ class ProjectPresenter : BasePresenter<ProjectView>() {
     /**
      * 获取项目列表
      */
-    fun getProjectList(cid: Int) {
+    fun getProjectList(pageNo: Int, cid: Int) {
         RxHttpUtils.createApi(ApiService::class.java)
-            .getProjectList(1, cid)
+            .getProjectList(pageNo, cid)
             .compose(Transformer.switchSchedulers())
             .subscribe(object : PageObserver<ProjectListBean>(RxTag) {
                 override fun doSuccess(pageTotal: Int, dataLists: List<ProjectListBean>) {
-                    getView()?.getProjectListSuccess(dataLists, pageTotal)
+                    getView()?.getProjectListSuccess(dataLists, pageNo, pageTotal)
+                }
+
+                override fun onComplete() {
+                    super.onComplete()
+                    getView()?.reqOnComplete()
                 }
             })
+
     }
 }

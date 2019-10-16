@@ -10,6 +10,7 @@ import com.even.commonrv.adapter.BaseRecyclerAdapter
 import com.even.commonrv.adapter.BaseViewHolder
 import com.even.commonrv.decoration.ItemDecorationWithMargin
 import com.even.kt_common.base.PageObserver
+import com.even.kt_common.utils.CommonOpenActivityHelper
 import com.even.kt_wxarticle.R
 import com.even.kt_wxarticle.api.ApiService
 import com.even.kt_wxarticle.beans.ArticleListBean
@@ -31,24 +32,27 @@ class ListFragment(private val articleId: String) : BaseFragment() {
     override fun getContentView(): Int = R.layout.fragment_list
     override fun getLogicClazz(): Class<*>? = null
     override fun initView() {
-        srLayout.setOnRefreshListener { direction ->
-            if (direction == SwipyRefreshLayoutDirection.TOP) {
-                getData(1)
+        srLayout.setOnLoadMoreListener {
+            if (mPageNo < mPageTotal) {
+                getData(++mPageNo)
             } else {
-                if (mPageNo < mPageTotal) {
-                    getData(++mPageNo)
-                } else {
-                    ToastUtils.showShort(UiUtils.getString(R.string.load_all))
-                    srLayout.isRefreshing = false
-                }
+                ToastUtils.showShort(UiUtils.getString(R.string.load_all))
+                srLayout.finishLoadMoreWithNoMoreData()
             }
+        }
+        srLayout.setOnRefreshListener {
+            getData(1)
         }
 
         adapter = object : BaseRecyclerAdapter<ArticleListBean>(dataList, R.layout.item_article_list) {
             override fun covert(holder: BaseViewHolder?, item: ArticleListBean?, position: Int) {
                 holder?.setText(R.id.tvTitle, item?.title)
-                holder?.setText(R.id.tvTime, item?.niceDate)
+                holder?.setText(R.id.tvTime, String.format(UiUtils.getString(R.string.wt_update_time), item?.niceDate))
             }
+        }
+        adapter.setOnItemClick { _, item, _ ->
+            CommonOpenActivityHelper.openWebViewActivity(activity, item.title, item.link)
+
         }
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemDecorationWithMargin().setMargin(0))
@@ -70,16 +74,16 @@ class ListFragment(private val articleId: String) : BaseFragment() {
 
                 override fun doCompleted() {
                     super.doCompleted()
-                    srLayout.isRefreshing = false
+                    srLayout?.finishRefresh()
+                    srLayout?.finishLoadMore()
                 }
             })
     }
 
     override fun initData() {
         srLayout.post {
-            srLayout.isRefreshing = true
+            srLayout.autoRefresh()
             getData(mPageNo)
         }
-
     }
 }

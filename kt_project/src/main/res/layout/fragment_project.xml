@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dlLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorFFFFFF"
+        app:srlEnableLoadMore="true"
+        app:srlEnableRefresh="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTitle"
-            android:background="@color/colorFFFFFF"
-            android:layout_width="150dp"
-            android:overScrollMode="never"
-            android:layout_height="match_parent"/>
+        android:id="@+id/rvTitle"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorFFFFFF"
+        android:overScrollMode="never" />
 
-    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-            android:layout_width="match_parent"
-            app:direction="both"
-            android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvContent"
-                android:layout_width="match_parent"
-                android:overScrollMode="never"
-                android:layout_height="match_parent"/>
-    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

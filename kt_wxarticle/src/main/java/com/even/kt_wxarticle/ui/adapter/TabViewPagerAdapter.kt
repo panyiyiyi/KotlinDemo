@@ -2,24 +2,22 @@ package com.even.kt_wxarticle.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.even.common.base.BaseFragment
-
+import androidx.fragment.app.FragmentPagerAdapter
 
 /**
- * @author  Created by Even on 2019/8/20
+ * @author  Created by Even on 2019/9/27
  *  Email: emailtopan@163.com
  *
  */
-class TabViewPagerAdapter(
-    fragmentManager: FragmentManager,
-    private val fgLists: List<BaseFragment>,
-    lifecycle: Lifecycle
+class TabViewPagerAdapter<T : Fragment>(
+    fm: FragmentManager,
+    private val fgLists: List<T>,
+    private val tabNameLists: List<String>
 ) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
-    override fun getItemCount(): Int = fgLists.size
-    override fun createFragment(position: Int): Fragment = fgLists[position]
-
-
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    override fun getItem(position: Int): Fragment = fgLists[position]
+    override fun getCount(): Int = fgLists.size
+    override fun getPageTitle(position: Int): CharSequence {
+        return tabNameLists[position]
+    }
 }

@@ -13,7 +13,15 @@ import com.even.kt_common.router.provider.IProjectProvider
  */
 @Route(path = ARouterPath.PROJECT_SERVICE_PATH, name = "项目")
 class ProjectService : IProjectProvider {
-    override fun getProjectFragment(): BaseFragment = ProjectFragment()
+    var projectFragment: ProjectFragment? = null
+    override fun openMenu() {
+        projectFragment?.openMenu()
+    }
+
+    override fun getProjectFragment(): BaseFragment {
+        projectFragment = ProjectFragment()
+        return projectFragment as ProjectFragment
+    }
 
     override fun init(context: Context?) {
     }
